@@ -1,0 +1,271 @@
+#Copyright (c) 2015-2016 Qualcomm Technologies, Inc.
+#All Rights Reserved.
+#Confidential and Proprietary - Qualcomm Technologies, Inc.
+
+tc 1
+#HeadSet Mic to  Speakers AFE loopback   open spk
+!AfeLoop
+Txdevice:31
+Rxdevice:45
+
+enable
+TX DEC0 MUX:SWR_MIC
+TX SMIC MUX0:ADC1
+TX_CDC_DMA_TX_3 Channels:One
+TX_AIF1_CAP Mixer DEC0:1
+DEC0_BCS Switch:1
+ADC2_MIXER Switch:1
+ADC2 MUX:INP2
+ADC2 Volume:6
+TX_DEC0 Volume:90
+
+Adsp Working Mode:playback
+Left Channel Enable:1
+Left Speaker Volume:5
+Left Digital Gain:60
+
+SEC_MI2S_RX_DL_HL Switch:1
+SEC_MI2S_RX Port Mixer TX_CDC_DMA_TX_3:1
+
+tc 11
+#HeadSet Mic to  Speakers AFE loopback   close spk
+!AfeLoop
+Txdevice:31
+Rxdevice:45
+
+disable
+TX DEC0 MUX:ZERO
+TX SMIC MUX0:ZERO
+TX_AIF1_CAP Mixer DEC0:0
+ADC2_MIXER Switch:0
+ADC2 MUX:ZERO
+
+Left Digital Gain:0
+Adsp Working Mode:full
+Left Channel Enable:0
+SEC_MI2S_RX_DL_HL Switch:0
+SEC_MI2S_RX Port Mixer TX_CDC_DMA_TX_3:0
+
+tc 2
+#headset mic to rec                      open rec
+!AfeLoop
+Txdevice:31
+Rxdevice:30
+
+enable
+TX DEC0 MUX:SWR_MIC
+TX SMIC MUX0:ADC1
+TX_CDC_DMA_TX_3 Channels:One
+TX_AIF1_CAP Mixer DEC0:1
+DEC0_BCS Switch:1
+ADC2_MIXER Switch:1
+ADC2 MUX:INP2
+ADC2 Volume:6
+TX_DEC0 Volume:90
+
+RX_MACRO RX0 MUX:AIF1_PB
+RX_CDC_DMA_RX_0 Channels:One
+RX INT0_1 MIX1 INP0:RX0
+RX INT0 DEM MUX:CLSH_DSM_OUT
+EAR_RDAC Switch:1
+RDAC3_MUX:RX1
+RX_RX0 Digital Volume:90
+
+RX_CDC_DMA_RX_0_DL_HL Switch:1
+RX_CDC_DMA_RX_0 Port Mixer TX_CDC_DMA_TX_3:1
+
+tc 22
+#headset mic to rec                       close rec
+!AfeLoop
+Txdevice:31
+Rxdevice:30
+
+disable
+TX DEC0 MUX:ZERO
+TX SMIC MUX0:ZERO
+TX_AIF1_CAP Mixer DEC0:0
+ADC2_MIXER Switch:0
+ADC2 MUX:ZERO
+
+RX_MACRO RX0 MUX:ZERO
+RX INT0_1 MIX1 INP0:ZERO
+RX INT0 DEM MUX:ZERO
+EAR_RDAC Switch:0
+RDAC3_MUX:ZERO
+
+RX_CDC_DMA_RX_0_DL_HL Switch:0
+RX_CDC_DMA_RX_0 Port Mixer TX_CDC_DMA_TX_3:0
+
+tc 3
+# AMIC1 to Headset Speakers AFE loopback   open mic1
+!AfeLoop
+Txdevice:31
+Rxdevice:30
+
+enable
+TX DEC0 MUX:SWR_MIC
+TX SMIC MUX0:ADC0
+TX_CDC_DMA_TX_3 Channels:One
+TX_AIF1_CAP Mixer DEC0:1
+ADC1_MIXER Switch:1
+DEC0_BCS Switch:1
+ADC1 Volume:5
+TX_DEC0 Volume:84
+
+RX_MACRO RX0 MUX:AIF1_PB
+RX_MACRO RX1 MUX:AIF1_PB
+RX_CDC_DMA_RX_0 Channels:Two
+RX INT0_1 MIX1 INP0:RX0
+RX INT1_1 MIX1 INP0:RX1
+RX INT0 DEM MUX:CLSH_DSM_OUT
+RX INT1 DEM MUX:CLSH_DSM_OUT
+HPHL_RDAC Switch:1
+HPHR_RDAC Switch:1
+RX_RX0 Digital Volume:90
+HPHL Volume:18
+HPHR Volume:18
+
+RX_CDC_DMA_RX_0_DL_HL Switch:1
+RX_CDC_DMA_RX_0 Port Mixer TX_CDC_DMA_TX_3:1
+
+tc 33
+# AMIC1 to Headset Speakers AFE loopback   close mic1
+!AfeLoop
+Txdevice:31
+Rxdevice:30
+
+disable
+TX DEC0 MUX:MSM_DMIC
+TX SMIC MUX0:ZERO
+TX_AIF1_CAP Mixer DEC0:0
+ADC1_MIXER Switch:0
+
+RX_MACRO RX0 MUX:ZERO
+RX_MACRO RX1 MUX:ZERO
+RX INT0_1 MIX1 INP0:ZERO
+RX INT1_1 MIX1 INP0:ZERO
+RX INT0 DEM MUX:ZERO
+RX INT1 DEM MUX:ZERO
+HPHL_RDAC Switch:0
+HPHR_RDAC Switch:0
+RX_RX0 Digital Volume:84
+HPHL Volume:10
+HPHR Volume:10
+
+RX_CDC_DMA_RX_0_DL_HL Switch:0
+RX_CDC_DMA_RX_0 Port Mixer TX_CDC_DMA_TX_3:0
+
+tc 4
+# AMIC2 to Headset Speakers AFE loopback   open mic2
+!AfeLoop
+Txdevice:31
+Rxdevice:30
+
+enable
+TX DEC0 MUX:SWR_MIC
+TX SMIC MUX0:ADC1
+TX_CDC_DMA_TX_3 Channels:One
+TX_AIF1_CAP Mixer DEC0:1
+DEC0_BCS Switch:1
+ADC2_MIXER Switch:1
+ADC2 MUX:INP3
+ADC2 Volume:6
+TX_DEC0 Volume:90
+
+RX_MACRO RX0 MUX:AIF1_PB
+RX_MACRO RX1 MUX:AIF1_PB
+RX_CDC_DMA_RX_0 Channels:Two
+RX INT0_1 MIX1 INP0:RX0
+RX INT1_1 MIX1 INP0:RX1
+RX INT0 DEM MUX:CLSH_DSM_OUT
+RX INT1 DEM MUX:CLSH_DSM_OUT
+HPHL_RDAC Switch:1
+HPHR_RDAC Switch:1
+RX_RX0 Digital Volume:90
+HPHL Volume:18
+HPHR Volume:18
+
+RX_CDC_DMA_RX_0_DL_HL Switch:1
+RX_CDC_DMA_RX_0 Port Mixer TX_CDC_DMA_TX_3:1
+
+tc 44
+# AMIC2 to Headset Speakers AFE loopback   close mic2
+!AfeLoop
+Txdevice:31
+Rxdevice:30
+
+disable
+TX DEC0 MUX:ZERO
+TX SMIC MUX0:ZERO
+TX_AIF1_CAP Mixer DEC0:0
+ADC2_MIXER Switch:0
+ADC2 MUX:ZERO
+
+RX_MACRO RX0 MUX:ZERO
+RX_MACRO RX1 MUX:ZERO
+RX INT0_1 MIX1 INP0:ZERO
+RX INT1_1 MIX1 INP0:ZERO
+RX INT0 DEM MUX:ZERO
+RX INT1 DEM MUX:ZERO
+HPHL_RDAC Switch:0
+HPHR_RDAC Switch:0
+RX_RX0 Digital Volume:84
+HPHL Volume:10
+HPHR Volume:10
+
+RX_CDC_DMA_RX_0_DL_HL Switch:0
+RX_CDC_DMA_RX_0 Port Mixer TX_CDC_DMA_TX_3:0
+
+tc 5
+# AMIC3 to Headset Speakers AFE loopback   open mic3
+!AfeLoop
+Txdevice:5
+Rxdevice:5
+
+enable
+AIF1_CAP Mixer SLIM TX7:1
+SLIM_0_TX Channels:One
+CDC_IF TX7 MUX:DEC7
+ADC MUX7:AMIC
+AMIC MUX7:ADC4
+ADC4 Volume:12
+
+SLIM RX2 MUX:AIF4_PB
+SLIM RX3 MUX:AIF4_PB
+SLIM_6_RX Channels:Two
+RX INT1_2 MUX:RX2
+RX INT2_2 MUX:RX3
+RX INT1 DEM MUX:CLSH_DSM_OUT
+RX INT2 DEM MUX:CLSH_DSM_OUT
+RX1 Mix Digital Volume:84
+RX2 Mix Digital Volume:84
+
+SLIMBUS6_DL_HL Switch:1
+SLIMBUS_6_RX Port Mixer SLIM_0_TX:1
+
+tc 55
+# AMIC3 to Headset Speakers AFE loopback   close mic3
+!AfeLoop
+Txdevice:5
+Rxdevice:5
+
+disable
+AIF1_CAP Mixer SLIM TX7:0
+SLIM_0_TX Channels:ZERO
+CDC_IF TX7 MUX:ZERO
+ADC MUX7:ZERO
+AMIC MUX7:ZERO
+ADC4 Volume:0
+
+SLIM RX2 MUX:ZERO
+SLIM RX3 MUX:ZERO
+SLIM_6_RX Channels:ZERO
+RX INT1_2 MUX:ZERO
+RX INT2_2 MUX:ZERO
+RX INT1 DEM MUX:CLSH_DSM_OUT
+RX INT2 DEM MUX:CLSH_DSM_OUT
+RX1 Mix Digital Volume:0
+RX2 Mix Digital Volume:0
+
+SLIMBUS6_DL_HL Switch:0
+SLIMBUS_6_RX Port Mixer SLIM_0_TX:0
